@@ -151,7 +151,7 @@ a:hover {
 }
 
 /* Course links */
-.course-card a {
+.course-card a:not(.btn) {
   display: inline-block;
   margin-top: 0.9rem;
   color: var(--primary);
