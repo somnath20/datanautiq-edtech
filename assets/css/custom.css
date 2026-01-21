@@ -274,6 +274,12 @@ a:active {
 }
 animation: announcementScroll 12s linear infinite; /* faster */
 animation: announcementScroll 25s linear infinite; /* slower */
+@media (max-width: 640px) {
+  .announcement-bar {
+    font-size: 0.85rem;
+    height: 34px;
+  }
+}
 
 
 
