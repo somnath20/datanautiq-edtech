@@ -269,44 +269,6 @@ a:active {
   }
 }
 
-.announcement-bar{
-  position: sticky;
-  top: 0;
-  z-index: 60;
-  background: #dc2626;
-  color: #fff;
-  overflow: hidden;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-  pointer-events: auto;
-}
-
-.announcement-track{
-  display: inline-block;
-  white-space: nowrap;
-  padding-left: 100%;
-  animation: announcementScroll 18s linear infinite;
-  will-change: transform;
-}
-
-.announcement-bar:hover .announcement-track{
-  animation-play-state: paused !important;
-}
-
-@keyframes announcementScroll{
-  0%{ transform: translateX(0%); }
-  100%{ transform: translateX(-100%); }
-}
-
-@media (max-width: 640px) {
-  .announcement-bar {
-    font-size: 0.85rem;
-    height: 34px;
-  }
-}
-
 
 
 
