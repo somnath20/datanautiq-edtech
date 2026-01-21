@@ -1,24 +1,172 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-smooth">
 <head>
-  <title>Blogs | DataNautIQ</title>
+  <meta charset="UTF-8">
+  <title>Blogs & Resources | DataNautIQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Shared Design System -->
+  <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
-<body class="bg-gray-50 px-10 py-10">
+<body class="bg-gray-50 text-gray-800">
 
-<h1 class="text-4xl font-bold mb-8">Blogs & Learning Resources</h1>
+<!-- NAVBAR -->
+<nav class="bg-white shadow px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+  <h1 class="text-2xl font-bold text-blue-600">DataNautIQ</h1>
+  <ul class="flex space-x-6">
+    <li><a class="nav-link" href="index.html">Home</a></li>
+    <li><a class="nav-link" href="courses.html">Courses</a></li>
+    <li><a class="nav-link" href="live-courses.html">Live Courses</a></li>
+    <li><a class="nav-link" href="contact.html">Contact</a></li>
+  </ul>
+</nav>
 
-<div class="bg-white p-6 shadow rounded mb-4">
-  <h2 class="text-xl font-bold">How Databricks Works Internally</h2>
-  <p>Understand Spark, Delta & Photon in real projects.</p>
-</div>
+<!-- PAGE HERO -->
+<section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 text-center animate-gradient">
+  <div class="animate-fadeInUp max-w-3xl mx-auto px-4">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">
+      Blogs & Learning Resources 📚
+    </h1>
+    <p class="text-lg">
+      Deep technical insights, real-world architectures, and interview-ready explanations
+      from industry experience.
+    </p>
+  </div>
+</section>
 
-<div class="bg-white p-6 shadow rounded">
-  <h2 class="text-xl font-bold">ADF vs Databricks – Real Use Cases</h2>
-  <p>Which tool to use and when.</p>
-</div>
+<!-- BLOGS SECTION -->
+<section class="py-20 px-6 md:px-12 reveal">
+
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+    <!-- BLOG CARD -->
+    <div class="course-card border-t-4 border-indigo-600">
+      <span class="inline-block mb-2 text-xs font-semibold text-indigo-600">
+        Databricks
+      </span>
+      <h3 class="text-xl font-bold mb-2">
+        How Databricks Works Internally
+      </h3>
+      <p class="text-sm text-gray-600 mb-3">
+        Understand how Spark, Delta Lake, Photon, and Unity Catalog work together
+        inside Databricks.
+      </p>
+      <p class="text-xs text-gray-500 mb-4">
+        Topics: Spark Engine • Delta • Photon • Control Plane
+      </p>
+      <a href="#" class="text-blue-600 font-semibold">
+        Read Article →
+      </a>
+    </div>
+
+    <!-- BLOG CARD -->
+    <div class="course-card border-t-4 border-blue-600">
+      <span class="inline-block mb-2 text-xs font-semibold text-blue-600">
+        Architecture
+      </span>
+      <h3 class="text-xl font-bold mb-2">
+        Spark Architecture Explained (From Scratch)
+      </h3>
+      <p class="text-sm text-gray-600 mb-3">
+        A complete breakdown of Driver, Executors, DAG, Stages, Tasks,
+        Shuffle, and memory internals.
+      </p>
+      <p class="text-xs text-gray-500 mb-4">
+        Topics: Driver • Executors • DAG • AQE • Shuffle
+      </p>
+      <a href="#" class="text-blue-600 font-semibold">
+        Read Article →
+      </a>
+    </div>
+
+    <!-- BLOG CARD -->
+    <div class="course-card border-t-4 border-indigo-700">
+      <span class="inline-block mb-2 text-xs font-semibold text-indigo-700">
+        Delta Lake
+      </span>
+      <h3 class="text-xl font-bold mb-2">
+        Delta Lake Internals & Architecture
+      </h3>
+      <p class="text-sm text-gray-600 mb-3">
+        Learn how Delta Lake ensures ACID transactions, schema enforcement,
+        time travel, and performance at scale.
+      </p>
+      <p class="text-xs text-gray-500 mb-4">
+        Topics: Delta Logs • ACID • OPTIMIZE • Z-Order
+      </p>
+      <a href="#" class="text-blue-600 font-semibold">
+        Read Article →
+      </a>
+    </div>
+
+    <!-- BLOG CARD -->
+    <div class="course-card border-t-4 border-blue-600">
+      <span class="inline-block mb-2 text-xs font-semibold text-blue-600">
+        Azure
+      </span>
+      <h3 class="text-xl font-bold mb-2">
+        ADF vs Databricks – Real Industry Use Cases
+      </h3>
+      <p class="text-sm text-gray-600 mb-3">
+        When to use Azure Data Factory vs Databricks based on
+        performance, cost, and architecture.
+      </p>
+      <p class="text-xs text-gray-500 mb-4">
+        Topics: ETL vs ELT • Cost • Scalability
+      </p>
+      <a href="#" class="text-blue-600 font-semibold">
+        Read Article →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="bg-gray-900 text-white py-14 text-center">
+  <h2 class="text-2xl font-bold mb-4">
+    Want Deep-Dive Training Instead of Just Reading?
+  </h2>
+  <p class="mb-6 text-gray-300">
+    Join our live courses and learn these concepts with real projects.
+  </p>
+
+  <a href="courses.html"
+     class="bg-white text-gray-900 px-6 py-3 rounded-lg font-semibold
+            hover:scale-105 transition">
+    Explore Courses
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-white py-8 text-center">
+  © 2026 DataNautIQ | Industry-Focused EdTech Training
+</footer>
+
+<!-- STICKY WHATSAPP -->
+<a href="https://wa.me/91XXXXXXXXXX"
+   class="fixed bottom-6 right-6 whatsapp-btn text-white
+          px-5 py-3 rounded-full shadow-lg
+          hover:scale-110 transition z-50">
+  💬 WhatsApp
+</a>
+
+<!-- SCROLL ANIMATION -->
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fadeInUp');
+      }
+    });
+  });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
-
