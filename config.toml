@@ -2,29 +2,34 @@ baseURL = "https://datanautiq.github.io/"
 languageCode = "en-us"
 title = "DataNautIQ"
 theme = "ananke"
-menu:
-  main:
-    - name: "Home"
-      url: "/"
-      weight: 1
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
 
-    - name: "Live Courses"
-      url: "/courses/live/"
-      weight: 2
+[[menu.main]]
+name = "Live Courses"
+url = "/courses/live/"
+weight = 2
 
-    - name: "All Courses"
-      url: "/courses/"
-      weight: 3
+[[menu.main]]
+name = "All Courses"
+url = "/courses/"
+weight = 3
 
-    - name: "Blogs"
-      url: "/blogs/"
-      weight: 4
+[[menu.main]]
+name = "Blogs"
+url = "/blogs/"
+weight = 4
 
-    - name: "Contact"
-      url: "/contact/"
-      weight: 5
+[[menu.main]]
+name = "Contact"
+url = "/contact/"
+weight = 5
 
-    - name: "Feedback"
-      url: "/feedback/"
-      weight: 6
+[[menu.main]]
+name = "Feedback"
+url = "/feedback/"
+weight = 6
+
 
