@@ -294,13 +294,35 @@ a:active {
 }
 
 
-.course-card {
+/* =========================================================
+   COURSE CARD COLOR THEMES (SUBTLE)
+   ========================================================= */
+
+.course-azure {
   background: linear-gradient(
     180deg,
     #f8fbff,
     #ffffff
   );
   border-left: 4px solid #2563eb;
+}
+
+.course-dbx {
+  background: linear-gradient(
+    180deg,
+    #f5f3ff,
+    #ffffff
+  );
+  border-left: 4px solid #4f46e5;
+}
+
+.course-stream {
+  background: linear-gradient(
+    180deg,
+    #fdf4ff,
+    #ffffff
+  );
+  border-left: 4px solid #9333ea;
 }
 
 
