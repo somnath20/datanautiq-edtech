@@ -205,6 +205,24 @@ a:hover {
   }
 }
 
+@media (max-width: 640px) {
+  .metric-card,
+  .feature-card,
+  .course-card,
+  .testimonial-card {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+}
+
+p {
+  line-height: 1.65;
+}
+
+button:active,
+a:active {
+  transform: scale(0.97);
+}
+
 
 /* Scroll reveal base state */
 .reveal {
