@@ -269,6 +269,11 @@ a:active {
   }
 }
 
+.announcement-bar:hover .announcement-track {
+  animation-play-state: paused;
+}
+animation: announcementScroll 12s linear infinite; /* faster */
+animation: announcementScroll 25s linear infinite; /* slower */
 
 
 
