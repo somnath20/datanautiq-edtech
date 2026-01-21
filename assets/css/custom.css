@@ -1,8 +1,135 @@
+/* =========================================================
+   GLOBAL BASE STYLES
+   ========================================================= */
+
+/* Smooth scrolling fallback (Tailwind also handles this) */
 body {
   scroll-behavior: smooth;
 }
 
-a:hover {
-  opacity: 0.8;
+/* Global link transitions (safe + subtle) */
+a {
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
+a:hover {
+  opacity: 0.85;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+/* Fade-in-up animation (used for hero & scroll reveal) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.9s ease-out both;
+}
+
+
+/* Animated gradient background (hero section) */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientMove 10s ease infinite;
+}
+
+
+/* =========================================================
+   REUSABLE CARD COMPONENTS
+   ========================================================= */
+
+.metric-card,
+.feature-card,
+.course-card,
+.testimonial-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-card:hover,
+.feature-card:hover,
+.course-card:hover,
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================================
+   COURSE CARD LINKS
+   ========================================================= */
+
+.course-card a {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: #2563eb; /* Tailwind blue-600 */
+  font-weight: 600;
+}
+
+.course-card a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   NAVBAR LINK ANIMATION
+   ========================================================= */
+
+.nav-link {
+  position: relative;
+  font-weight: 500;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #2563eb;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+
+/* =========================================================
+   OPTIONAL UTILITIES (FUTURE SAFE)
+   ========================================================= */
+
+/* Prevent animation jank on mobile */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

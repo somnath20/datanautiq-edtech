@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <title>DataNautIQ | Industry-Focused EdTech Training</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
@@ -14,143 +18,137 @@
 <div class="bg-gray-900 text-white text-sm px-6 py-2 flex justify-between">
   <span>📞 Enquiry: +91-98XXXXXXXX</span>
   <div class="space-x-4">
-    <a href="#">WhatsApp Community</a>
-    <a href="#">Free Tutorials</a>
-    <a href="#">Hire From Us</a>
+    <a href="#" class="hover:underline">WhatsApp Community</a>
+    <a href="#" class="hover:underline">Free Tutorials</a>
+    <a href="#" class="hover:underline">Hire From Us</a>
   </div>
 </div>
 
 <!-- NAVBAR -->
-<nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
+<nav class="bg-white shadow px-6 py-4 flex justify-between items-center sticky top-0 z-50">
   <h1 class="text-2xl font-bold text-blue-600">DataNautIQ</h1>
   <ul class="flex space-x-6">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="live-courses.html">Live Courses</a></li>
-    <li><a href="courses.html">All Courses</a></li>
-    <li><a href="blogs.html">Blogs</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a class="nav-link" href="index.html">Home</a></li>
+    <li><a class="nav-link" href="live-courses.html">Live Courses</a></li>
+    <li><a class="nav-link" href="courses.html">All Courses</a></li>
+    <li><a class="nav-link" href="blogs.html">Blogs</a></li>
+    <li><a class="nav-link" href="contact.html">Contact</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
-<section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-24 text-center">
+<section class="bg-gradient-to-r from-blue-600 to-indigo-700 
+                text-white py-28 text-center animate-gradient">
 
-  <h1 class="text-4xl md:text-5xl font-bold">
-    Become a Job-Ready Data Engineer 🚀
-  </h1>
+  <div class="animate-fadeInUp">
+    <h1 class="text-4xl md:text-5xl font-bold">
+      Become a Job-Ready Data Engineer 🚀
+    </h1>
 
-  <p class="mt-4 text-lg">
-    Industry-focused training with real-time projects in Azure, Databricks & Lakehouse
-  </p>
+    <p class="mt-4 text-lg">
+      Industry-focused training with real-time projects in Azure, Databricks & Lakehouse
+    </p>
 
-  <!-- ✅ CTA BUTTONS GO HERE -->
-  <div class="mt-8 flex justify-center gap-4">
+    <!-- CTA BUTTONS -->
+    <div class="mt-10 flex justify-center gap-4">
+      <a href="courses.html"
+         class="bg-white text-blue-700 px-6 py-3 rounded-lg font-semibold
+                transition-all duration-300 hover:scale-105 hover:shadow-lg">
+        Explore Courses
+      </a>
 
-    <a href="courses.html"
-       class="bg-white text-blue-700 px-6 py-3 rounded-lg 
-              font-semibold hover:bg-gray-100 transition">
-      Explore Courses
-    </a>
-
-    <a href="live-courses.html"
-       class="border border-white px-6 py-3 rounded-lg 
-              hover:bg-white hover:text-blue-700 transition">
-      Join Live Batch
-    </a>
-
+      <a href="live-courses.html"
+         class="border border-white px-6 py-3 rounded-lg
+                transition-all duration-300 hover:bg-white hover:text-blue-700 hover:scale-105">
+        Join Live Batch
+      </a>
+    </div>
   </div>
 
 </section>
-
 
 <!-- METRICS -->
-<section class="py-16 bg-white">
+<section class="py-16 bg-white reveal">
   <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center px-10">
-    <div class="p-6 shadow rounded">10+<br/>Real-Time Projects</div>
-    <div class="p-6 shadow rounded">5+<br/>Years Industry Experience</div>
-    <div class="p-6 shadow rounded">Live<br/>Instructor-Led Training</div>
-    <div class="p-6 shadow rounded">Career<br/>Guidance</div>
+    <div class="metric-card">10+<br/>Real-Time Projects</div>
+    <div class="metric-card">5+<br/>Years Industry Experience</div>
+    <div class="metric-card">Live<br/>Instructor-Led Training</div>
+    <div class="metric-card">Career<br/>Guidance</div>
   </div>
 </section>
 
-
-<!-- ✅ WHY CHOOSE DATANAUTIQ (PASTE HERE) -->
-<section class="bg-gray-50 py-16">
+<!-- WHY CHOOSE -->
+<section class="bg-gray-50 py-16 reveal">
   <h2 class="text-3xl font-bold text-center mb-10">
     Why Choose DataNautIQ?
   </h2>
 
   <div class="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-    <div class="bg-white p-6 rounded-xl shadow text-center">
-      <h3 class="font-semibold text-lg">Real Industry Projects</h3>
-      <p class="text-sm mt-2">End-to-end pipelines used in real companies</p>
+    <div class="feature-card">
+      <h3>Real Industry Projects</h3>
+      <p>End-to-end pipelines used in real companies</p>
     </div>
 
-    <div class="bg-white p-6 rounded-xl shadow text-center">
-      <h3 class="font-semibold text-lg">Instructor-Led Training</h3>
-      <p class="text-sm mt-2">No recorded dump, full live explanation</p>
+    <div class="feature-card">
+      <h3>Instructor-Led Training</h3>
+      <p>No recorded dump, full live explanation</p>
     </div>
 
-    <div class="bg-white p-6 rounded-xl shadow text-center">
-      <h3 class="font-semibold text-lg">Interview Preparation</h3>
-      <p class="text-sm mt-2">SQL, Spark, System Design & Scenarios</p>
+    <div class="feature-card">
+      <h3>Interview Preparation</h3>
+      <p>SQL, Spark, System Design & Scenarios</p>
     </div>
 
-    <div class="bg-white p-6 rounded-xl shadow text-center">
-      <h3 class="font-semibold text-lg">Career Guidance</h3>
-      <p class="text-sm mt-2">Resume + real interview insights</p>
+    <div class="feature-card">
+      <h3>Career Guidance</h3>
+      <p>Resume + real interview insights</p>
     </div>
   </div>
 </section>
 
-<!-- FEATURED COURSES -->
-<section class="py-16 px-10">
+<!-- COURSES -->
+<section class="py-16 px-10 reveal">
   <h3 class="text-3xl font-bold mb-10 text-center">Popular Courses</h3>
+
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <div class="bg-white rounded-xl shadow-md p-6 
-            hover:shadow-xl hover:-translate-y-1 
-            transition-all duration-300">
-      <h4 class="font-bold text-xl">Azure Data Engineer</h4>
-      <p class="mt-2">ADF • ADLS • Databricks • Synapse</p>
-      <p class="mt-2">Duration: 8 Weeks | Live</p>
-      <a href="courses.html" class="text-blue-600 mt-4 inline-block">View More</a>
+    <div class="course-card">
+      <h4>Azure Data Engineer</h4>
+      <p>ADF • ADLS • Databricks • Synapse</p>
+      <p>Duration: 8 Weeks | Live</p>
+      <a href="courses.html">View More →</a>
     </div>
 
-    <div class="bg-white rounded-xl shadow-md p-6 
-            hover:shadow-xl hover:-translate-y-1 
-            transition-all duration-300">
-      <h4 class="font-bold text-xl">Databricks Lakehouse</h4>
-      <p class="mt-2">Delta • Photon • Unity Catalog</p>
-      <p class="mt-2">Duration: 6 Weeks</p>
-      <a href="courses.html" class="text-blue-600 mt-4 inline-block">View More</a>
+    <div class="course-card">
+      <h4>Databricks Lakehouse</h4>
+      <p>Delta • Photon • Unity Catalog</p>
+      <p>Duration: 6 Weeks</p>
+      <a href="courses.html">View More →</a>
     </div>
 
-    <div class="bg-white rounded-xl shadow-md p-6 
-            hover:shadow-xl hover:-translate-y-1 
-            transition-all duration-300">
-      <h4 class="font-bold text-xl">Real-Time Streaming</h4>
-      <p class="mt-2">Kafka • Spark • Azure</p>
-      <p class="mt-2">Duration: 4 Weeks</p>
-      <a href="courses.html" class="text-blue-600 mt-4 inline-block">View More</a>
+    <div class="course-card">
+      <h4>Real-Time Streaming</h4>
+      <p>Kafka • Spark • Azure</p>
+      <p>Duration: 4 Weeks</p>
+      <a href="courses.html">View More →</a>
     </div>
   </div>
 </section>
 
-<!-- ✅ TESTIMONIALS (PASTE HERE) -->
-<section class="py-16 bg-white">
+<!-- TESTIMONIALS -->
+<section class="py-16 bg-white reveal">
   <h2 class="text-3xl font-bold text-center mb-8">
     What Students Say
   </h2>
 
   <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
-    <div class="p-6 shadow rounded-xl">
+    <div class="testimonial-card">
       “Clear explanations with real industry examples.”
-      <p class="mt-2 font-semibold">— Working Professional</p>
+      <p>— Working Professional</p>
     </div>
 
-    <div class="p-6 shadow rounded-xl">
+    <div class="testimonial-card">
       “Best Databricks explanation I’ve seen.”
-      <p class="mt-2 font-semibold">— Data Engineer</p>
+      <p>— Data Engineer</p>
     </div>
   </div>
 </section>
@@ -160,12 +158,26 @@
   © 2026 DataNautIQ | Industry-Focused EdTech Training
 </footer>
 
-<!-- ✅ STICKY WHATSAPP BUTTON (GLOBAL) -->
+<!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/91XXXXXXXXXX"
-   class="fixed bottom-6 right-6 bg-green-500 text-white 
-          px-5 py-3 rounded-full shadow-lg 
-          hover:scale-105 transition z-50">
+   class="fixed bottom-6 right-6 bg-green-500 text-white
+          px-5 py-3 rounded-full shadow-lg
+          transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-bounce z-50">
   💬 WhatsApp
 </a>
+
+<!-- SCROLL ANIMATION SCRIPT -->
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fadeInUp');
+      }
+    });
+  });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
