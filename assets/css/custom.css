@@ -294,6 +294,14 @@ a:active {
 }
 
 
+.course-card {
+  background: linear-gradient(
+    180deg,
+    #f8fbff,
+    #ffffff
+  );
+  border-left: 4px solid #2563eb;
+}
 
 
 
