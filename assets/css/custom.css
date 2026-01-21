@@ -267,4 +267,37 @@ a:active {
   }
 }
 
+/* ===============================
+   ANNOUNCEMENT BAR (MARQUEE)
+   =============================== */
+
+.announcement-bar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: #dc2626; /* Red */
+  color: white;
+  overflow: hidden;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+}
+
+.announcement-track {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: announcementScroll 18s linear infinite;
+}
+
+@keyframes announcementScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 
