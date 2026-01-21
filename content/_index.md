@@ -1,37 +1,39 @@
----
-title: "DataNautIQ – Industry-Focused EdTech Training"
----
+<div class="hero">
+  <div>
+    <h1>DataNautIQ</h1>
+    <p>
+      Industry-focused Data Engineering training with real projects,
+      real pipelines, and real cloud architecture.
+    </p>
+    <a href="#live" class="btn-primary">View Live Courses</a>
+  </div>
+</div>
 
-## Become a Job-Ready Data Engineer 🚀
+<div id="live" class="section">
+  <h2>🚀 Live Instructor-Led Programs</h2>
 
-Instructor-led live training with **real industry projects**,  
-designed for **working professionals and serious learners**.
+  <div class="card-grid">
+    <div class="card">
+      <h3>Azure Data Engineering</h3>
+      <p>ADF, Databricks, ADLS, Unity Catalog, real pipelines.</p>
+    </div>
 
----
+    <div class="card">
+      <h3>AWS Data Engineering</h3>
+      <p>Glue, EMR, Redshift, S3, production architectures.</p>
+    </div>
 
-## 🔴 Currently Running Live Courses
-Learn live, ask doubts, work on real use cases.
+    <div class="card">
+      <h3>Databricks Lakehouse</h3>
+      <p>Delta, Photon, Unity Catalog, performance tuning.</p>
+    </div>
+  </div>
+</div>
 
-👉 **[View Live Courses](/courses/live/)**
-
----
-
-## 📚 Our Courses
-Self-paced and live programs designed from **industry experience**.
-
-👉 **[View All Courses](/courses/)**
-
----
-
-## ✍️ Blogs & Learning Resources
-Deep dives into **Data Engineering, Azure, Databricks, Lakehouse**.
-
-👉 **[Read Blogs](/blogs/)**
-
----
-
-## 📞 Get in Touch
-Have questions? Want guidance?
-
-👉 **[Contact Us](/contact/)**  
-👉 **[Submit Feedback](/feedback/)**
+<div class="section">
+  <h2>✍️ Blogs & Deep Dives</h2>
+  <p>
+    Architecture breakdowns, interview prep, real-world pipelines.
+  </p>
+  <a href="/blogs/" class="btn-primary">Read Blogs</a>
+</div>
