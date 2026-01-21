@@ -32,6 +32,7 @@
     <li><a class="nav-link" href="live-courses.html">Live Courses</a></li>
     <li><a class="nav-link" href="courses.html">All Courses</a></li>
     <li><a class="nav-link" href="blogs.html">Blogs</a></li>
+    <li><a class="nav-link" href="feedback.html">Feedback</a></li>
     <li><a class="nav-link" href="contact.html">Contact</a></li>
   </ul>
 </nav>
@@ -167,19 +168,7 @@
 </a>
 
 
-<!-- SCROLL ANIMATION SCRIPT -->
-<script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-fadeInUp');
-      }
-    });
-  });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-
+<!-- SCROLL REVEAL OBSERVER -->
 <script>
   const observer = new IntersectionObserver(
     entries => {
@@ -196,6 +185,7 @@
   document.querySelectorAll('.reveal')
     .forEach(el => observer.observe(el));
 </script>
+
   
 </body>
 </html>
