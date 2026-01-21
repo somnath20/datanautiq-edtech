@@ -14,6 +14,21 @@
 
 <body class="bg-gray-50 text-gray-800">
 
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+  <div class="announcement-track">
+    🔴 Live Azure Data Engineer Batch starting on <b>15 Feb</b> |
+    Weekend Classes |
+    Limited Seats |
+    Enroll Now 🚀 |
+    🔴 Live Azure Data Engineer Batch starting on <b>15 Feb</b> |
+    Weekend Classes |
+    Limited Seats |
+    Enroll Now 🚀
+  </div>
+</div>
+
+  
 <!-- TOP BAR -->
 <div class="bg-gray-900 text-white text-sm px-6 py-2 flex justify-between">
   <span>📞 Enquiry: +91-98XXXXXXXX</span>
@@ -25,15 +40,17 @@
 </div>
 
 <!-- NAVBAR -->
-<nav class="bg-white shadow px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+<nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center sticky top-[40px] z-50">
   <h1 class="text-2xl font-bold text-blue-600">DataNautIQ</h1>
   <ul class="flex space-x-6">
-    <li><a class="nav-link" href="index.html">Home</a></li>
-    <li><a class="nav-link" href="live-courses.html">Live Courses</a></li>
-    <li><a class="nav-link" href="courses.html">All Courses</a></li>
-    <li><a class="nav-link" href="blogs.html">Blogs</a></li>
-    <li><a class="nav-link" href="contact.html">Contact</a></li>
-  </ul>
+  <li><a class="nav-link" href="index.html">Home</a></li>
+  <li><a class="nav-link" href="live-courses.html">Live Courses</a></li>
+  <li><a class="nav-link" href="courses.html">All Courses</a></li>
+  <li><a class="nav-link" href="blogs.html">Blogs</a></li>
+  <li><a class="nav-link" href="feedback.html">Feedback</a></li>
+  <li><a class="nav-link" href="contact.html">Contact</a></li>
+</ul>
+
 </nav>
 
 <!-- HERO -->
@@ -66,6 +83,7 @@
   </div>
 
 </section>
+
 
 <!-- METRICS -->
 <section class="py-16 bg-white reveal">
@@ -160,24 +178,31 @@
 
 <!-- WHATSAPP BUTTON -->
 <a href="https://wa.me/91XXXXXXXXXX"
-   class="fixed bottom-6 right-6 bg-green-500 text-white
+   class="fixed bottom-6 right-6 whatsapp-btn text-white
           px-5 py-3 rounded-full shadow-lg
-          transition-all duration-300 hover:scale-110 hover:shadow-2xl animate-bounce z-50">
+          hover:scale-110 transition z-50">
   💬 WhatsApp
 </a>
 
-<!-- SCROLL ANIMATION SCRIPT -->
-<script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-fadeInUp');
-      }
-    });
-  });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+<!-- SCROLL REVEAL OBSERVER -->
+<script>
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fadeInUp');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('.reveal')
+    .forEach(el => observer.observe(el));
 </script>
 
+  
 </body>
 </html>
