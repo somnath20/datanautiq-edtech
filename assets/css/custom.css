@@ -204,3 +204,17 @@ a:hover {
     transition: none !important;
   }
 }
+
+
+/* Scroll reveal base state */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* When revealed */
+.reveal.animate-fadeInUp {
+  opacity: 1;
+  transform: translateY(0);
+}
+
