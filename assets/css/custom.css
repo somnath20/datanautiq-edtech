@@ -325,6 +325,9 @@ a:active {
   border-left: 4px solid #9333ea;
 }
 
+.course-card:hover {
+  box-shadow: 0 20px 45px rgba(37, 99, 235, 0.15);
+}
 
 
 
