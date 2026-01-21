@@ -293,6 +293,34 @@ a:active {
   transform: scale(1.05);
 }
 
+/* =========================================================
+   PREMIUM HERO BACKGROUND
+   ========================================================= */
+
+.hero-section {
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(30, 64, 175, 0.85),
+      rgba(79, 70, 229, 0.85)
+    ),
+    url("../images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Optional soft overlay */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top,
+    rgba(255,255,255,0.08),
+    transparent 60%
+  );
+}
+
 
 
 
