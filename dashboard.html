@@ -234,6 +234,44 @@
       .catch(err => alert(err.message));
   });
 </script>
+<script type="module">
+  import { onAuthStateChanged, signOut } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { auth } from "./assets/js/firebase.js";
+
+  const loginNav = document.getElementById("loginNav");
+  const dashboardNav = document.getElementById("dashboardNav");
+  const userNav = document.getElementById("userNav");
+  const userAvatar = document.getElementById("userAvatar");
+  const logoutLink = document.getElementById("logoutLink");
+
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      // Logged in
+      loginNav.classList.add("hidden");
+      dashboardNav.classList.remove("hidden");
+      userNav.classList.remove("hidden");
+
+      userAvatar.src =
+        user.photoURL || "https://via.placeholder.com/32";
+
+      userAvatar.onclick = () => {
+        window.location.href = "dashboard.html";
+      };
+    } else {
+      // Logged out
+      loginNav.classList.remove("hidden");
+      dashboardNav.classList.add("hidden");
+      userNav.classList.add("hidden");
+    }
+  });
+
+  logoutLink?.addEventListener("click", () => {
+    signOut(auth).then(() => {
+      window.location.href = "index.html";
+    });
+  });
+</script>
 
 </body>
 </html>
