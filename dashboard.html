@@ -6,52 +6,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Inter, Arial, sans-serif;
       background: #f5f7fb;
+      color: #1f2937;
     }
 
+    /* HEADER */
     header {
-      background: #0b5cff;
+      background: linear-gradient(90deg, #0b5cff, #2563eb);
       color: white;
-      padding: 16px 24px;
+      padding: 18px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
+    header h1 {
+      font-size: 22px;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    header button {
+      background: #ef4444;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    header button:hover {
+      opacity: 0.9;
+    }
+
+    /* PAGE WRAPPER */
     .container {
-      max-width: 900px;
-      margin: 30px auto;
+      max-width: 1000px;
+      margin: 32px auto;
       padding: 0 20px;
     }
 
+    /* CARD */
     .card {
       background: white;
-      border-radius: 10px;
-      padding: 22px;
+      border-radius: 12px;
+      padding: 24px;
       margin-bottom: 24px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
     }
 
-    .user {
+    /* USER CARD */
+    .user-card {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
     }
 
     .avatar {
-      width: 64px;
-      height: 64px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
-      background: #ccc;
+      background: #94a3b8;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
+      font-size: 28px;
       color: white;
-      font-weight: bold;
+      font-weight: 600;
       overflow: hidden;
     }
 
@@ -61,31 +88,52 @@
       object-fit: cover;
     }
 
-    button {
-      background: #ff4d4f;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 6px;
-      cursor: pointer;
+    .user-info h2 {
+      margin: 0 0 4px;
+      font-size: 20px;
+    }
+
+    .user-info p {
+      margin: 0;
+      color: #6b7280;
       font-size: 14px;
     }
 
-    button:hover {
-      opacity: 0.9;
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
     }
 
-    .primary-btn {
-      background: #0b5cff;
-      margin-top: 12px;
-    }
-
+    /* ACCESS LIST */
     ul {
+      margin: 12px 0 0;
       padding-left: 20px;
     }
 
     li {
       margin-bottom: 6px;
+    }
+
+    /* FEEDBACK CARD */
+    .feedback {
+      border-left: 6px solid #2563eb;
+    }
+
+    .primary-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .primary-btn:hover {
+      opacity: 0.9;
     }
   </style>
 </head>
@@ -94,102 +142,60 @@
 
 <!-- HEADER -->
 <header>
-  <h2>DataNautIQ Dashboard</h2>
+  <h1>DataNautIQ Dashboard</h1>
   <button id="logoutBtn">Logout</button>
 </header>
 
 <!-- CONTENT -->
 <div class="container">
 
-  <!-- USER CARD -->
-  <div class="card user">
+  <!-- USER -->
+  <div class="card user-card">
     <div class="avatar" id="avatar">
       <span id="avatarLetter">U</span>
       <img id="userPhoto" style="display:none;" />
     </div>
 
-    <div>
-      <h3 id="userName">Loading...</h3>
-      <p id="userEmail" style="color:#666;"></p>
+    <div class="user-info">
+      <h2 id="userName">Loading...</h2>
+      <p id="userEmail"></p>
     </div>
   </div>
 
-  <!-- NAVBAR -->
-<nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center sticky top-0 z-50">
-  <h1 class="text-2xl font-bold text-blue-600">
-    <a href="index.html">DataNautIQ</a>
-  </h1>
+  <!-- GRID -->
+  <div class="grid">
 
-  <ul class="flex items-center space-x-6">
+    <!-- ACCESS -->
+    <div class="card">
+      <h3>Your Access</h3>
+      <ul>
+        <li>✅ Courses Dashboard</li>
+        <li>✅ Live Sessions</li>
+        <li>✅ Learning Resources</li>
+      </ul>
+    </div>
 
-    <li><a class="nav-link" href="index.html">Home</a></li>
-    <li><a class="nav-link" href="live-courses.html">Live Courses</a></li>
-    <li><a class="nav-link" href="courses.html">All Courses</a></li>
-    <li><a class="nav-link" href="blogs.html">Blogs</a></li>
-    <li><a class="nav-link" href="feedback.html">Feedback</a></li>
-    <li><a class="nav-link" href="contact.html">Contact</a></li>
-
-    <!-- DASHBOARD (logged in only) -->
-    <li id="dashboardNav" class="hidden">
-      <a class="nav-link font-semibold text-blue-600" href="dashboard.html">
-        Dashboard
-      </a>
-    </li>
-
-    <!-- LOGIN (logged out only) -->
-    <li id="loginNav">
-      <a class="nav-link font-semibold text-blue-600" href="login.html">
-        Login
-      </a>
-    </li>
-
-    <!-- USER AVATAR -->
-    <li id="userNav" class="hidden flex items-center gap-3">
-      <img id="userAvatar"
-           src=""
-           alt="User"
-           title="Dashboard"
-           class="w-8 h-8 rounded-full cursor-pointer" />
-
-      <button id="logoutLink"
-              class="text-red-500 font-medium hover:underline">
-        Logout
+    <!-- FEEDBACK -->
+    <div class="card feedback">
+      <h3>📝 Course Feedback</h3>
+      <p>
+        Your feedback helps us improve learning quality.
+        It takes less than 2 minutes.
+      </p>
+      <button class="primary-btn"
+              onclick="window.location.href='feedback.html'">
+        Give Feedback
       </button>
-    </li>
+    </div>
 
-  </ul>
-</nav>
-
-
-  <!-- ACCESS -->
-  <div class="card">
-    <h3>Your Access</h3>
-    <ul>
-      <li>✅ Courses Dashboard</li>
-      <li>✅ Live Sessions</li>
-      <li>✅ Learning Resources</li>
-    </ul>
   </div>
 
-  <!-- FEEDBACK (IMPORTANT) -->
-  <div class="card" style="border-left: 6px solid #0b5cff;">
-    <h3>📝 Course Feedback</h3>
-    <p>
-      Your feedback helps us improve content quality and learning experience.
-      It takes less than 2 minutes.
-    </p>
-
-    <button class="primary-btn" onclick="window.location.href='feedback.html'">
-      Give Feedback
-    </button>
-  </div>
-
-  <!-- NEXT STEPS -->
+  <!-- INFO -->
   <div class="card">
     <h3>Next Steps</h3>
     <p>
-      You are successfully logged in using Google.
-      This dashboard is protected and visible only to authenticated users.
+      You are logged in using Google.
+      This dashboard is visible only to authenticated users.
     </p>
   </div>
 
@@ -207,66 +213,26 @@
   const avatarLetter = document.getElementById("avatarLetter");
   const logoutBtn = document.getElementById("logoutBtn");
 
-  // 🔐 AUTH GUARD
   onAuthStateChanged(auth, user => {
     if (!user) {
       window.location.href = "login.html";
       return;
     }
 
-    userName.innerText = user.displayName || "User";
-    userEmail.innerText = user.email;
+    userName.textContent = user.displayName || "User";
+    userEmail.textContent = user.email;
 
-    // Avatar handling
     if (user.photoURL) {
       userPhoto.src = user.photoURL;
       userPhoto.style.display = "block";
       avatarLetter.style.display = "none";
     } else {
-      avatarLetter.innerText = (user.displayName || "U")[0].toUpperCase();
+      avatarLetter.textContent =
+        (user.displayName || "U")[0].toUpperCase();
     }
   });
 
-  // 🚪 LOGOUT
   logoutBtn.addEventListener("click", () => {
-    signOut(auth)
-      .then(() => window.location.href = "login.html")
-      .catch(err => alert(err.message));
-  });
-</script>
-<script type="module">
-  import { onAuthStateChanged, signOut } 
-    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-  import { auth } from "./assets/js/firebase.js";
-
-  const loginNav = document.getElementById("loginNav");
-  const dashboardNav = document.getElementById("dashboardNav");
-  const userNav = document.getElementById("userNav");
-  const userAvatar = document.getElementById("userAvatar");
-  const logoutLink = document.getElementById("logoutLink");
-
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      // Logged in
-      loginNav.classList.add("hidden");
-      dashboardNav.classList.remove("hidden");
-      userNav.classList.remove("hidden");
-
-      userAvatar.src =
-        user.photoURL || "https://via.placeholder.com/32";
-
-      userAvatar.onclick = () => {
-        window.location.href = "dashboard.html";
-      };
-    } else {
-      // Logged out
-      loginNav.classList.remove("hidden");
-      dashboardNav.classList.add("hidden");
-      userNav.classList.add("hidden");
-    }
-  });
-
-  logoutLink?.addEventListener("click", () => {
     signOut(auth).then(() => {
       window.location.href = "index.html";
     });
