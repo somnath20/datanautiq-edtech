@@ -1,206 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Student Feedback | DataNautIQ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3RZJ1RVFR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'G-M3RZJ1RVFR');
-  </script>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Shared Custom Styles -->
-  <link rel="stylesheet" href="assets/css/custom.css">
+  <meta charset="UTF-8" />
+  <title>Feedback | DataNautIQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-<!-- TOP BAR -->
-<div class="bg-gray-900 text-white text-sm px-6 py-2 flex justify-between">
-  <span>📞 Enquiry: +91-98XXXXXXXX</span>
-  <div class="space-x-4">
-    <a href="#">WhatsApp Community</a>
-    <a href="#">Free Tutorials</a>
-    <a href="#">Hire From Us</a>
-  </div>
-</div>
+<h3>Redirecting you to the feedback form…</h3>
 
-<!-- NAVBAR -->
-<nav class="bg-white shadow px-6 py-4 flex justify-between items-center sticky top-0 z-50">
-  <h1 class="text-2xl font-bold text-blue-600">DataNautIQ</h1>
-  <ul class="flex space-x-6">
-    <li><a class="nav-link" href="index.html">Home</a></li>
-    <li><a class="nav-link" href="courses.html">Courses</a></li>
-    <li><a class="nav-link" href="live-courses.html">Live Courses</a></li>
-    <li><a class="nav-link" href="blogs.html">Blogs</a></li>
-    <li><a class="nav-link" href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+<script type="module">
+  import { onAuthStateChanged } 
+    from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+  import { auth } from "./assets/js/firebase.js";
 
-<!-- PAGE HERO -->
-<section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 text-center animate-gradient">
-  <div class="max-w-3xl mx-auto px-4 reveal">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">
-      Student Feedback 💬
-    </h1>
-    <p class="text-lg">
-      Your feedback helps us improve training quality and learning experience.
-    </p>
-  </div>
-</section>
+  onAuthStateChanged(auth, user => {
+    if (!user) {
+      // 🔒 Only logged-in users can give feedback
+      window.location.href = "login.html";
+      return;
+    }
 
-<!-- FEEDBACK FORM -->
-<section class="py-20 px-6 md:px-12 reveal">
-  <div class="max-w-4xl mx-auto bg-white p-10 rounded-xl shadow-lg">
+    // 🔹 Data from Firebase Auth
+    const email = encodeURIComponent(user.email);
+    const linkedin = encodeURIComponent(""); // optional: fetch from Firestore later
 
-    <h2 class="text-3xl font-bold mb-6 text-center">
-      Share Your Learning Experience
-    </h2>
+    // 🔹 Google Form URL (auto-filled)
+    const formUrl =
+      "https://docs.google.com/forms/d/e/1FAIpQLSc7xPkFLG8EnHG612fEiPyqpECfUjya5U6wp7sgJbbl6vI3gQ/viewform?" +
+      "entry.816146792=" + email + "&" +
+      "entry.1231142237=" + linkedin;
 
-    <p class="text-center text-gray-600 mb-10">
-      This feedback is reviewed by instructors and helps us continuously improve.
-    </p>
-
-    <form class="space-y-6">
-
-      <!-- BASIC INFO -->
-      <div class="grid md:grid-cols-2 gap-6">
-        <div>
-          <label class="block font-semibold mb-1">Your Name</label>
-          <input type="text"
-                 class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
-                 placeholder="Enter your name">
-        </div>
-
-        <div>
-          <label class="block font-semibold mb-1">Email (Optional)</label>
-          <input type="email"
-                 class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
-                 placeholder="you@example.com">
-        </div>
-      </div>
-
-      <!-- COURSE -->
-      <div>
-        <label class="block font-semibold mb-1">Course Name</label>
-        <select class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500">
-          <option>Select Course</option>
-          <option>Azure Data Engineer</option>
-          <option>Databricks Lakehouse</option>
-          <option>Databricks Bootcamp</option>
-          <option>Databricks Masterclass</option>
-          <option>Real-Time Data Streaming</option>
-        </select>
-      </div>
-
-      <!-- RATING -->
-      <div>
-        <label class="block font-semibold mb-3">Overall Rating</label>
-        <div class="flex gap-4 text-lg">
-          <label><input type="radio" name="rating"> ⭐⭐⭐⭐⭐</label>
-          <label><input type="radio" name="rating"> ⭐⭐⭐⭐</label>
-          <label><input type="radio" name="rating"> ⭐⭐⭐</label>
-          <label><input type="radio" name="rating"> ⭐⭐</label>
-          <label><input type="radio" name="rating"> ⭐</label>
-        </div>
-      </div>
-
-      <!-- FEEDBACK -->
-      <div>
-        <label class="block font-semibold mb-1">What did you like the most?</label>
-        <textarea rows="3"
-                  class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
-                  placeholder="Teaching style, projects, clarity, pace..."></textarea>
-      </div>
-
-      <div>
-        <label class="block font-semibold mb-1">What can be improved?</label>
-        <textarea rows="3"
-                  class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
-                  placeholder="Suggestions for improvement"></textarea>
-      </div>
-
-      <!-- CONSENT -->
-      <div class="flex items-center gap-2">
-        <input type="checkbox">
-        <label class="text-sm">
-          You may publish my feedback anonymously on the website
-        </label>
-      </div>
-
-      <!-- SUBMIT -->
-      <button type="submit"
-              class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold
-                     transition hover:bg-green-700 hover:scale-[1.02]">
-        Submit Feedback
-      </button>
-
-    </form>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="py-16 bg-white reveal">
-  <h2 class="text-3xl font-bold text-center mb-8">
-    What Students Say
-  </h2>
-
-  <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
-    <div class="testimonial-card">
-      “Clear explanations with real industry examples.”
-      <p class="mt-2 font-semibold">— Working Professional</p>
-    </div>
-
-    <div class="testimonial-card">
-      “Best Databricks explanation I’ve seen.”
-      <p class="mt-2 font-semibold">— Data Engineer</p>
-    </div>
-  </div>
-</section>
-
-<!-- MONITORING NOTE -->
-<section class="bg-gray-100 py-12 text-center reveal">
-  <p class="text-lg font-semibold">
-    📊 All feedback is reviewed weekly to improve course quality and delivery.
-  </p>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-gray-900 text-white py-8 text-center">
-  © 2026 DataNautIQ | Industry-Focused EdTech Training
-</footer>
-
-<!-- STICKY WHATSAPP -->
-<a href="https://wa.me/91XXXXXXXXXX"
-   class="fixed bottom-6 right-6 bg-green-500 text-white
-          px-5 py-3 rounded-full shadow-lg
-          hover:scale-110 transition z-50">
-  💬 WhatsApp
-</a>
-
-<!-- SCROLL REVEAL SCRIPT -->
-<script>
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fadeInUp');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // 🔁 Redirect to Google Form
+    window.location.href = formUrl;
+  });
 </script>
 
 </body>
