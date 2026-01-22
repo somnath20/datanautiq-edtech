@@ -6,13 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Inter, Arial, sans-serif;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background: #f4f6fb;
       color: #1f2937;
     }
@@ -22,38 +19,62 @@
       height: 64px;
       background: linear-gradient(90deg, #0b5cff, #2563eb);
       color: white;
-      padding: 0 32px;
+      padding: 0 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 50;
     }
 
-    header h1 {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .brand-title {
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 700;
       margin: 0;
+      letter-spacing: 0.2px;
+      color: #fff;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
     }
 
     header button {
       background: #ef4444;
       border: none;
       color: white;
-      padding: 8px 16px;
-      border-radius: 6px;
+      padding: 9px 16px;
+      border-radius: 8px;
       font-size: 14px;
       cursor: pointer;
+      transition: transform 0.06s ease, opacity 0.15s ease;
     }
-
-    header button:hover {
-      opacity: 0.9;
-    }
+    header button:hover { opacity: 0.92; }
+    header button:active { transform: translateY(1px); }
 
     /* PAGE CONTAINER */
     .container {
       max-width: 1100px;
-      margin: 32px auto;
-      padding: 0 24px;
+      margin: 28px auto;
+      padding: 0 22px;
     }
 
     /* CARD */
@@ -62,14 +83,14 @@
       border-radius: 14px;
       padding: 24px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     /* USER CARD */
     .user-card {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
     }
 
     .avatar {
@@ -79,22 +100,25 @@
       background: #64748b;
       color: white;
       font-size: 28px;
-      font-weight: 600;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      flex: 0 0 auto;
     }
 
     .avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: none;
     }
 
     .user-info h2 {
       margin: 0;
       font-size: 20px;
+      font-weight: 700;
     }
 
     .user-info p {
@@ -106,19 +130,12 @@
     /* GRID */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
     }
 
-    /* ACCESS */
-    ul {
-      margin: 12px 0 0;
-      padding-left: 18px;
-    }
-
-    li {
-      margin-bottom: 6px;
-    }
+    ul { margin: 12px 0 0; padding-left: 18px; }
+    li { margin-bottom: 7px; }
 
     /* FEEDBACK CARD */
     .feedback {
@@ -131,13 +148,17 @@
       color: white;
       border: none;
       padding: 10px 18px;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 14px;
+      transition: transform 0.06s ease, opacity 0.15s ease;
     }
+    .primary-btn:hover { opacity: 0.92; }
+    .primary-btn:active { transform: translateY(1px); }
 
-    .primary-btn:hover {
-      opacity: 0.9;
+    .muted {
+      color: #6b7280;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -146,11 +167,13 @@
 
 <!-- HEADER -->
 <header>
-  <h1>
-  <a href="index.html" style="color:white; text-decoration:none;">
-    DataNautIQ Dashboard
-  </a>
-</h1>
+  <!-- IMPORTANT: we navigate with JS (works even if base href breaks relative links) -->
+  <div class="brand" id="homeBrand" title="Go to Home">
+    <div class="brand-text">
+      <div class="brand-title">DataNautIQ Dashboard</div>
+      <div class="brand-sub">Click to go Home</div>
+    </div>
+  </div>
 
   <button id="logoutBtn">Logout</button>
 </header>
@@ -162,12 +185,12 @@
   <div class="card user-card">
     <div class="avatar" id="avatar">
       <span id="avatarLetter">U</span>
-      <img id="userPhoto" style="display:none" />
+      <img id="userPhoto" alt="User Photo" />
     </div>
 
     <div class="user-info">
       <h2 id="userName">Loading...</h2>
-      <p id="userEmail"></p>
+      <p id="userEmail" class="muted"></p>
     </div>
   </div>
 
@@ -187,14 +210,10 @@
     <!-- FEEDBACK -->
     <div class="card feedback">
       <h3>📝 Course Feedback</h3>
-      <p>
-        Help us improve your learning experience.
-        It takes less than 2 minutes.
+      <p class="muted">
+        Help us improve your learning experience. It takes less than 2 minutes.
       </p>
-      <button class="primary-btn"
-              onclick="window.location.href='feedback.html'">
-        Give Feedback
-      </button>
+      <button class="primary-btn" id="feedbackBtn">Give Feedback</button>
     </div>
 
   </div>
@@ -202,9 +221,8 @@
   <!-- INFO -->
   <div class="card">
     <h3>Next Steps</h3>
-    <p>
-      You are logged in using Google.
-      This dashboard is available only to authenticated users.
+    <p class="muted">
+      You are logged in using Google. This dashboard is available only to authenticated users.
     </p>
   </div>
 
@@ -216,35 +234,59 @@
     from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
   import { auth } from "./assets/js/firebase.js";
 
-  const userName = document.getElementById("userName");
-  const userEmail = document.getElementById("userEmail");
-  const userPhoto = document.getElementById("userPhoto");
-  const avatarLetter = document.getElementById("avatarLetter");
-  const logoutBtn = document.getElementById("logoutBtn");
+  const homeBrand   = document.getElementById("homeBrand");
+  const feedbackBtn = document.getElementById("feedbackBtn");
+  const logoutBtn   = document.getElementById("logoutBtn");
 
-  onAuthStateChanged(auth, user => {
+  const userName    = document.getElementById("userName");
+  const userEmail   = document.getElementById("userEmail");
+  const userPhoto   = document.getElementById("userPhoto");
+  const avatarLetter= document.getElementById("avatarLetter");
+
+  // ✅ Always go home reliably (absolute path from your domain root)
+  // If your site is at https://datanautiq.in/ then this is perfect.
+  // If your site is in a subfolder, change "/" to "/<folder>/".
+  const HOME_URL = "/index.html";
+
+  homeBrand.addEventListener("click", () => {
+    window.location.assign(HOME_URL);
+  });
+
+  feedbackBtn.addEventListener("click", () => {
+    window.location.assign("/feedback.html");
+  });
+
+  // 🔐 AUTH GUARD + UI fill
+  onAuthStateChanged(auth, (user) => {
     if (!user) {
-      window.location.href = "login.html";
+      window.location.replace("/login.html");
       return;
     }
 
     userName.textContent = user.displayName || "User";
-    userEmail.textContent = user.email;
+    userEmail.textContent = user.email || "";
 
     if (user.photoURL) {
       userPhoto.src = user.photoURL;
       userPhoto.style.display = "block";
       avatarLetter.style.display = "none";
     } else {
-      avatarLetter.textContent =
-        (user.displayName || "U")[0].toUpperCase();
+      const initial = (user.displayName || user.email || "U")[0]?.toUpperCase() || "U";
+      avatarLetter.textContent = initial;
+      userPhoto.style.display = "none";
+      avatarLetter.style.display = "flex";
     }
   });
 
-  logoutBtn.addEventListener("click", () => {
-    signOut(auth).then(() => {
-      window.location.href = "index.html";
-    });
+  // 🚪 LOGOUT (with error handling)
+  logoutBtn.addEventListener("click", async () => {
+    try {
+      await signOut(auth);
+      window.location.replace("/index.html");
+    } catch (err) {
+      console.error("Logout failed:", err);
+      alert("Logout failed: " + (err?.message || err));
+    }
   });
 </script>
 
