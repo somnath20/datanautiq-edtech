@@ -21,6 +21,8 @@
     }
     .container {
       padding: 24px;
+      max-width: 1100px;
+      margin: auto;
     }
     .card {
       background: white;
@@ -46,6 +48,7 @@
       padding: 10px 16px;
       border-radius: 6px;
       cursor: pointer;
+      font-size: 14px;
     }
     button:hover {
       opacity: 0.9;
@@ -63,7 +66,7 @@
 <div class="container">
 
   <div class="card user">
-    <img id="userPhoto" src="" alt="User photo" />
+    <img id="userPhoto" src="https://via.placeholder.com/64" alt="User photo" />
     <div>
       <h3 id="userName">Loading...</h3>
       <p id="userEmail"></p>
@@ -89,57 +92,39 @@
 
 </div>
 
-<!-- AUTH LOGIC -->
+<!-- 🔐 AUTH LOGIC -->
 <script type="module">
-  import { onAuthStateChanged, signOut } 
-    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
   import { auth } from "./assets/js/firebase.js";
+  import { onAuthStateChanged, signOut }
+    from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
-  window.addEventListener("DOMContentLoaded", () => {
+  const userName  = document.getElementById("userName");
+  const userEmail = document.getElementById("userEmail");
+  const userPhoto = document.getElementById("userPhoto");
+  const logoutBtn = document.getElementById("logoutBtn");
 
-    const userName = document.getElementById("userName");
-    const userEmail = document.getElementById("userEmail");
-    const userPhoto = document.getElementById("userPhoto");
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    if (!logoutBtn) {
-      console.error("❌ Logout button not found");
+  // 🔒 AUTH GUARD
+  onAuthStateChanged(auth, user => {
+    if (!user) {
+      window.location.replace("login.html");
       return;
     }
 
-    // 🔐 AUTH GUARD + USER DATA
-    onAuthStateChanged(auth, user => {
-      if (!user) {
-        console.warn("User not logged in, redirecting...");
-        window.location.href = "login.html";
-        return;
-      }
+    userName.textContent  = user.displayName || "User";
+    userEmail.textContent = user.email || "";
+    userPhoto.src         = user.photoURL || "https://via.placeholder.com/64";
+  });
 
-      console.log("✅ User authenticated:", user.email);
-
-      userName.innerText = user.displayName || "User";
-      userEmail.innerText = user.email;
-      userPhoto.src = user.photoURL || "https://via.placeholder.com/64";
-    });
-
-    // 🚪 LOGOUT (FIXED + GUARANTEED)
-    logoutBtn.addEventListener("click", () => {
-      console.log("Logout clicked");
-
-      signOut(auth)
-        .then(() => {
-          console.log("✅ Successfully logged out");
-          window.location.href = "login.html";
-        })
-        .catch(err => {
-          console.error("❌ Logout failed:", err);
-          alert(err.message);
-        });
-    });
-
+  // 🚪 LOGOUT
+  logoutBtn.addEventListener("click", async () => {
+    try {
+      await signOut(auth);
+      window.location.replace("login.html");
+    } catch (err) {
+      alert("Logout failed: " + err.message);
+    }
   });
 </script>
-
 
 </body>
 </html>
