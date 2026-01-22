@@ -1,12 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard | DataNautIQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+    }
+    header {
+      background: #0b5cff;
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .container {
+      padding: 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .user img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+    }
+    button {
+      background: #ff4d4f;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h2>DataNautIQ Dashboard</h2>
+  <button id="logoutBtn">Logout</button>
+</header>
+
+<div class="container">
+
+  <div class="card user">
+    <img id="userPhoto" src="" alt="User photo" />
+    <div>
+      <h3 id="userName">Loading...</h3>
+      <p id="userEmail"></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Your Access</h3>
+    <ul>
+      <li>✅ Courses Dashboard</li>
+      <li>✅ Live Sessions</li>
+      <li>✅ Learning Resources</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Next Steps</h3>
+    <p>
+      You are successfully logged in using Google.
+      This dashboard is protected and visible only to authenticated users.
+    </p>
+  </div>
+
+</div>
+
+<!-- AUTH LOGIC -->
 <script type="module">
-  import { getAuth, onAuthStateChanged } 
+  import { onAuthStateChanged, signOut } 
     from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { auth } from "./assets/js/firebase.js";
 
-  const auth = getAuth();
+  const userName = document.getElementById("userName");
+  const userEmail = document.getElementById("userEmail");
+  const userPhoto = document.getElementById("userPhoto");
+  const logoutBtn = document.getElementById("logoutBtn");
 
+  // 🔐 AUTH GUARD + DATA
   onAuthStateChanged(auth, user => {
     if (!user) {
       window.location.href = "login.html";
+      return;
     }
+
+    userName.innerText = user.displayName || "User";
+    userEmail.innerText = user.email;
+    userPhoto.src = user.photoURL || "https://via.placeholder.com/64";
   });
+
+  // 🚪 LOGOUT
+  logoutBtn.onclick = () => {
+    signOut(auth).then(() => {
+      window.location.href = "login.html";
+    });
+  };
 </script>
+
+</body>
+</html>
