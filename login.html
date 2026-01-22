@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login | DataNautIQ</title>
+</head>
+<body>
+
+<h2>Login to DataNautIQ</h2>
+<button id="loginBtn">Login with Google</button>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA2Fgptok0ZzqJhbNrEl0a8j_rCou9-ULk",
+    authDomain: "datanautiq.firebaseapp.com",
+    projectId: "datanautiq",
+    storageBucket: "datanautiq.firebasestorage.app",
+    messagingSenderId: "214896542682",
+    appId: "1:214896542682:web:dc54d4f52b8ad33175f6e3",
+    measurementId: "G-PRBDSYJTZS"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  document.getElementById("loginBtn").onclick = () => {
+    signInWithPopup(auth, provider)
+      .then(() => {
+        window.location.href = "dashboard.html";
+      })
+      .catch(err => alert(err.message));
+  };
+</script>
+
+</body>
+</html>
