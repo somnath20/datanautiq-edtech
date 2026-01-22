@@ -11,6 +11,7 @@
       font-family: Arial, sans-serif;
       background: #f5f7fb;
     }
+
     header {
       background: #0b5cff;
       color: white;
@@ -19,60 +20,101 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .container {
-      padding: 24px;
-      max-width: 1100px;
-      margin: auto;
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
     }
+
     .card {
       background: white;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      border-radius: 10px;
+      padding: 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     }
+
     .user {
       display: flex;
       align-items: center;
       gap: 16px;
     }
-    .user img {
+
+    .avatar {
       width: 64px;
       height: 64px;
       border-radius: 50%;
+      background: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: white;
+      font-weight: bold;
+      overflow: hidden;
     }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     button {
       background: #ff4d4f;
       color: white;
       border: none;
-      padding: 10px 16px;
+      padding: 10px 18px;
       border-radius: 6px;
       cursor: pointer;
       font-size: 14px;
     }
+
     button:hover {
       opacity: 0.9;
+    }
+
+    .primary-btn {
+      background: #0b5cff;
+      margin-top: 12px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 6px;
     }
   </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
   <h2>DataNautIQ Dashboard</h2>
   <button id="logoutBtn">Logout</button>
 </header>
 
+<!-- CONTENT -->
 <div class="container">
 
+  <!-- USER CARD -->
   <div class="card user">
-    <img id="userPhoto" src="https://via.placeholder.com/64" alt="User photo" />
+    <div class="avatar" id="avatar">
+      <span id="avatarLetter">U</span>
+      <img id="userPhoto" style="display:none;" />
+    </div>
+
     <div>
       <h3 id="userName">Loading...</h3>
-      <p id="userEmail"></p>
+      <p id="userEmail" style="color:#666;"></p>
     </div>
   </div>
 
+  <!-- ACCESS -->
   <div class="card">
     <h3>Your Access</h3>
     <ul>
@@ -82,6 +124,20 @@
     </ul>
   </div>
 
+  <!-- FEEDBACK (IMPORTANT) -->
+  <div class="card" style="border-left: 6px solid #0b5cff;">
+    <h3>📝 Course Feedback</h3>
+    <p>
+      Your feedback helps us improve content quality and learning experience.
+      It takes less than 2 minutes.
+    </p>
+
+    <button class="primary-btn" onclick="window.location.href='feedback.html'">
+      Give Feedback
+    </button>
+  </div>
+
+  <!-- NEXT STEPS -->
   <div class="card">
     <h3>Next Steps</h3>
     <p>
@@ -92,37 +148,43 @@
 
 </div>
 
-<!-- 🔐 AUTH LOGIC -->
+<!-- AUTH LOGIC -->
 <script type="module">
-  import { auth } from "./assets/js/firebase.js";
   import { onAuthStateChanged, signOut }
-    from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { auth } from "./assets/js/firebase.js";
 
-  const userName  = document.getElementById("userName");
+  const userName = document.getElementById("userName");
   const userEmail = document.getElementById("userEmail");
   const userPhoto = document.getElementById("userPhoto");
+  const avatarLetter = document.getElementById("avatarLetter");
   const logoutBtn = document.getElementById("logoutBtn");
 
-  // 🔒 AUTH GUARD
+  // 🔐 AUTH GUARD
   onAuthStateChanged(auth, user => {
     if (!user) {
-      window.location.replace("login.html");
+      window.location.href = "login.html";
       return;
     }
 
-    userName.textContent  = user.displayName || "User";
-    userEmail.textContent = user.email || "";
-    userPhoto.src         = user.photoURL || "https://via.placeholder.com/64";
+    userName.innerText = user.displayName || "User";
+    userEmail.innerText = user.email;
+
+    // Avatar handling
+    if (user.photoURL) {
+      userPhoto.src = user.photoURL;
+      userPhoto.style.display = "block";
+      avatarLetter.style.display = "none";
+    } else {
+      avatarLetter.innerText = (user.displayName || "U")[0].toUpperCase();
+    }
   });
 
   // 🚪 LOGOUT
-  logoutBtn.addEventListener("click", async () => {
-    try {
-      await signOut(auth);
-      window.location.replace("login.html");
-    } catch (err) {
-      alert("Logout failed: " + err.message);
-    }
+  logoutBtn.addEventListener("click", () => {
+    signOut(auth)
+      .then(() => window.location.href = "login.html")
+      .catch(err => alert(err.message));
   });
 </script>
 
