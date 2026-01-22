@@ -16,16 +16,18 @@
       background: linear-gradient(135deg, #0b5cff, #0039cb);
       color: white;
     }
+
     .login-box {
       background: white;
       color: #222;
       padding: 32px;
       border-radius: 10px;
-      width: 320px;
+      width: 340px;
       text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
-    button {
+
+    .primary-btn {
       margin-top: 20px;
       width: 100%;
       padding: 12px;
@@ -36,8 +38,28 @@
       font-size: 15px;
       cursor: pointer;
     }
-    button:hover {
+
+    .secondary-btn {
+      margin-top: 12px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      background: white;
+      color: #333;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .primary-btn:hover,
+    .secondary-btn:hover {
       opacity: 0.9;
+    }
+
+    .hint {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #666;
     }
   </style>
 </head>
@@ -47,10 +69,23 @@
 <div class="login-box">
   <h2>Login to DataNautIQ</h2>
   <p>Continue using your Google account</p>
-  <button id="loginBtn">Sign in with Google</button>
+
+  <!-- 🔐 LOGIN -->
+  <button class="primary-btn" id="loginBtn">
+    Sign in with Google
+  </button>
+
+  <!-- 🏠 PUBLIC ACCESS -->
+  <button class="secondary-btn" id="homeBtn">
+    Continue to Home (No Login)
+  </button>
+
+  <div class="hint">
+    Login is required only for dashboard & courses
+  </div>
 </div>
 
-<!-- 🔐 LOGIN LOGIC -->
+<!-- 🔐 AUTH LOGIC -->
 <script type="module">
   import { auth } from "./assets/js/firebase.js";
   import {
@@ -61,15 +96,16 @@
 
   const provider = new GoogleAuthProvider();
   const loginBtn = document.getElementById("loginBtn");
+  const homeBtn = document.getElementById("homeBtn");
 
-  // 🚫 If already logged in → dashboard
+  // If already logged in → dashboard
   onAuthStateChanged(auth, user => {
     if (user) {
       window.location.replace("dashboard.html");
     }
   });
 
-  // 🔐 Google Login
+  // Google Login
   loginBtn.addEventListener("click", async () => {
     try {
       await signInWithPopup(auth, provider);
@@ -77,6 +113,11 @@
     } catch (err) {
       alert(err.message);
     }
+  });
+
+  // Go to public home
+  homeBtn.addEventListener("click", () => {
+    window.location.href = "index.html";
   });
 </script>
 
