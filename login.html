@@ -1,39 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Login | DataNautIQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0b5cff, #0039cb);
+      color: white;
+    }
+    .login-box {
+      background: white;
+      color: #222;
+      padding: 32px;
+      border-radius: 10px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      background: #0b5cff;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
 </head>
+
 <body>
 
-<h2>Login to DataNautIQ</h2>
-<button id="loginBtn">Login with Google</button>
+<div class="login-box">
+  <h2>Login to DataNautIQ</h2>
+  <p>Continue using your Google account</p>
+  <button id="loginBtn">Sign in with Google</button>
+</div>
 
+<!-- 🔐 LOGIN LOGIC -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup } 
-    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  import { auth } from "./assets/js/firebase.js";
+  import {
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyA2Fgptok0ZzqJhbNrEl0a8j_rCou9-ULk",
-    authDomain: "datanautiq.firebaseapp.com",
-    projectId: "datanautiq",
-    storageBucket: "datanautiq.firebasestorage.app",
-    messagingSenderId: "214896542682",
-    appId: "1:214896542682:web:dc54d4f52b8ad33175f6e3",
-    measurementId: "G-PRBDSYJTZS"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
+  const loginBtn = document.getElementById("loginBtn");
 
-  document.getElementById("loginBtn").onclick = () => {
-    signInWithPopup(auth, provider)
-      .then(() => {
-        window.location.href = "dashboard.html";
-      })
-      .catch(err => alert(err.message));
-  };
+  // 🚫 If already logged in → dashboard
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      window.location.replace("dashboard.html");
+    }
+  });
+
+  // 🔐 Google Login
+  loginBtn.addEventListener("click", async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      window.location.replace("dashboard.html");
+    } catch (err) {
+      alert(err.message);
+    }
+  });
 </script>
 
 </body>
